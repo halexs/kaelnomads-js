@@ -10,7 +10,7 @@ import "./HomePage.css"
 //   },
 // };
 
-function HomePage(props:any) {
+function HomePage(props) {
   console.log("url: ", props.url);
   let mainPage: any = "";
 

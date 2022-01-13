@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Alex(props:any) {
+function Alex(props) {
 
   return (
     <div>

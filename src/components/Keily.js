@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Keily(props:any) {
+function Keily(props) {
 
   return (
     <div>
