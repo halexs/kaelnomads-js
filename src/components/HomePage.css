@@ -1,0 +1,12 @@
+#main-container {
+	margin: 8px 8px 8px 8px;
+	padding: 8px 8px 8px 8px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+/*
+	background-color: salmon;
+	*/
+	/*width: 90%;*/
+}
