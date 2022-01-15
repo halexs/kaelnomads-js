@@ -25,8 +25,10 @@ function HomePage(props) {
   }
 
   return (
-    <div id="main-container">
-      {mainPage}
+    <div id="defining-container">
+      <div id="main-container">
+        {mainPage}
+      </div>
     </div>
   );
 }

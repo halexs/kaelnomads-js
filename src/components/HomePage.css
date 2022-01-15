@@ -1,12 +1,19 @@
 #main-container {
 	margin: 8px 8px 8px 8px;
-	padding: 8px 8px 8px 8px;
+	/*padding: 8px 8px 8px 8px;*/
+	padding: 4px 4px 4px 4px;
 	
+	/*display: flex;*/
+	width: 80%;
+	background-color: lightgray;
+	border-radius: 10px;
+/*
+	*/
+	/*width: 90%;*/
+}
+
+#defining-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-/*
-	background-color: salmon;
-	*/
-	/*width: 90%;*/
 }
