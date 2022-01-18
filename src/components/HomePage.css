@@ -2,7 +2,7 @@
 	margin: 8px 8px 8px 8px;
 	/*padding: 8px 8px 8px 8px;*/
 	padding: 4px 4px 4px 4px;
-	
+
 	/*display: flex;*/
 	width: 80%;
 	background-color: lightgray;
@@ -13,6 +13,7 @@
 }
 
 #defining-container {
+	margin: 8px 8px 8px 8px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

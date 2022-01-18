@@ -26,11 +26,12 @@ function HomePage(props) {
 
   return (
     <div id="defining-container">
-      <div id="main-container">
-        {mainPage}
-      </div>
+      {mainPage}
     </div>
   );
 }
+      // <div id="main-container">
+      //   {mainPage}
+      // </div>
 
 export default HomePage;

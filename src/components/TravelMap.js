@@ -55,12 +55,14 @@ function TravelMap(props) {
 
   return (
     <div id="map-border">
+      <div id="map-container">
       <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={true}>
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {markerList}
         <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
       </MapContainer>
+      </div>
     </div>
   );
 }

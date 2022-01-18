@@ -18,6 +18,13 @@
 }
 
 #map-border {
+	padding: 4px 4px 4px 4px;
+	width: 80%;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+#map-container {
 
 	flex: 1;
 /*
