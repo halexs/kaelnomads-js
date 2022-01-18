@@ -1,5 +1,14 @@
+
+#app-bar-style {
+}
+
+.right-align {
+  margin-left: auto;
+}
+
 .App {
   text-align: center;
+  /*background-color: aliceblue;*/
 }
 
 .App-logo {

@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Toolbar from '@mui/material/Toolbar'
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import { AppBar } from '@mui/material';
 
@@ -25,7 +26,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <AppBar position="static" color="default">
+        <AppBar id="app-bar-style" position="static" color="default" elevation={0}>
+          <Toolbar>
+          <div> Welcome to Alex and Keily's Adventure!
+          </div>
+          <div className="right-align"></div>
           <Tabs
             value={selectedTab}
             onChange={(event,value) => setSelectedTab(value)}
@@ -33,10 +38,11 @@ function App() {
             textColor="primary"
             aria-label="basic tabs example" centered
           >
-            <Tab label="Home" component={Link} to="/" />
+            <Tab label="Adventures" component={Link} to="/" />
             <Tab label="Alex" component={Link} to="/alex" />
             <Tab label="Keily" component={Link} to="/keily" />
           </Tabs>
+          </Toolbar>
         </AppBar>
 
         <Routes>
