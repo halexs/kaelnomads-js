@@ -7,6 +7,7 @@ import "./HomePage.css"
 import Grid from '@mui/material/Grid';
 // import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+// import { Link } from 'react-router-dom'
 // import { useNavigate } from "react-router-dom";
 
 // const styles = {
@@ -28,14 +29,14 @@ function HomePage(props) {
     window.location.href = url;
   }
 
-  
   // const handleClick = () => {
   //   navigate("/path/to/push");
   // }
 
   if (props.url === "/") {
+    // props.changeVisibility(false);
     pageMargins["margin"] = "";
-    // mainPage = <div id="main-page"> main page </div>;
+    mainPage = <div id="main-page"> main page </div>;
     mainPage = <Grid
       container
       spacing={0}
@@ -48,15 +49,20 @@ function HomePage(props) {
       <Grid item xs={3}>
        <div id="main-page">
           main page
-          <Button onClick={() => navigate('/travel')}> Go to Our Travels </Button>
+          <Button onClick={() => navigate('/travel')} > Go to Our Travels </Button>
+          <Button onClick={() => navigate('/alex')} > Go to Alex's Profile </Button>
+          <Button onClick={() => navigate('/keily')} >  Go to Keily's Profile </Button>
+          {/*<Button onClick={() => navigate('/travel')}> Go to Our Travels </Button>
           <Button onClick={() => navigate('/alex')}> Go to Alex's Profile </Button>
-          <Button onClick={() => navigate('/keily')}>  Go to Keily's Profile </Button>
+          <Button onClick={() => navigate('/keily')}>  Go to Keily's Profile </Button>*/}
        </div>
       </Grid>   
-       
     </Grid> 
+
+    // mainPage = <Redirect to="/travel" />
   }
   else if (props.url === "/travel") {
+    // props.changeVisibility(true);
     mainPage = <TravelMap />;
   }
   else if (props.url === "/alex") {
