@@ -56,7 +56,10 @@ function App() {
           </Toolbar>
         </AppBar>
 
+        {/*<div hidden={currentSelected !== 0}> main menu part 2</div>*/}
+
         <Routes>
+          {/*<Route path="/" element={<div></div>} />*/}
           <Route path="/" element={<HomePage url="/" />} />
           <Route path="/travel" element={<HomePage url="/travel" />} />
           <Route path="/alex" element={<HomePage url="/alex" />} />

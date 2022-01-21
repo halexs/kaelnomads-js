@@ -7,7 +7,7 @@ import "./HomePage.css"
 import Grid from '@mui/material/Grid';
 // import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 // const styles = {
 //   container: {
@@ -21,12 +21,14 @@ function HomePage(props) {
   let pageMargins = {"margin": "8px 8px 8px 8px"};
 
   // this is preferred due to perfformance
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // the following block works
-  // const navigate = (url) => {
-  //   window.location.href = url;
-  // }
+  const navigate = (url) => {
+    window.location.href = url;
+  }
+
+  
   // const handleClick = () => {
   //   navigate("/path/to/push");
   // }
