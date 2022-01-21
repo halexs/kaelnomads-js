@@ -5,8 +5,8 @@ import HomePage from './components/HomePage';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Toolbar from '@mui/material/Toolbar'
+import AppBar from '@mui/material/AppBar';
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import { AppBar } from '@mui/material';
 
 function App() {
   let currentSelected: number = 0;
@@ -16,9 +16,12 @@ function App() {
 
   if (window.location.pathname === "/") {
     currentSelected = 0;
-    hideAppBar["display"] = "none";
+    // hideAppBar["display"] = "none";
+    // hideAppBar["display"] = "block";
+    hideAppBar["visibility"] = "hidden";
   }
   else if (window.location.pathname === "/travel") {
+    console.log("inside travel now");
     currentSelected = 1;
   }
   else if (window.location.pathname === "/alex") {

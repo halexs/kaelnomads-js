@@ -12,6 +12,10 @@
 	/*width: 90%;*/
 }
 
+#main-page {
+	color: salmon;
+}
+
 #defining-container {
 	/*margin: 8px 8px 8px 8px;*/
 	display: flex;
