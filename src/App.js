@@ -11,14 +11,21 @@ import { AppBar } from '@mui/material';
 function App() {
   let currentSelected: number = 0;
 
+  // let hideAppBar = false;
+  let hideAppBar = {};
+
   if (window.location.pathname === "/") {
     currentSelected = 0;
+    hideAppBar["display"] = "none";
   }
-  else if (window.location.pathname === "/alex") {
+  else if (window.location.pathname === "/travel") {
     currentSelected = 1;
   }
-  else if (window.location.pathname === "/keily") {
+  else if (window.location.pathname === "/alex") {
     currentSelected = 2;
+  }
+  else if (window.location.pathname === "/keily") {
+    currentSelected = 3;
   }
 
   const [selectedTab, setSelectedTab] = React.useState(currentSelected);
@@ -26,7 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <AppBar id="app-bar-style" position="static" color="default" elevation={0}>
+        <AppBar style={hideAppBar} id="app-bar-style" position="static" color="default" elevation={0}>
           <Toolbar>
           <div> Welcome to Alex and Keily's Adventure!
           </div>
@@ -38,7 +45,8 @@ function App() {
             textColor="primary"
             aria-label="basic tabs example" centered
           >
-            <Tab label="Adventures" component={Link} to="/" />
+            <Tab label="Home" component={Link} to="/" />
+            <Tab label="Adventures" component={Link} to="/travel" />
             <Tab label="Alex" component={Link} to="/alex" />
             <Tab label="Keily" component={Link} to="/keily" />
           </Tabs>
@@ -47,6 +55,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage url="/" />} />
+          <Route path="/travel" element={<HomePage url="/travel" />} />
           <Route path="/alex" element={<HomePage url="/alex" />} />
           <Route path="/keily" element={<HomePage url="/keily" />} />
         </Routes>

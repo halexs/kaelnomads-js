@@ -13,8 +13,13 @@ import "./HomePage.css"
 function HomePage(props) {
   console.log("url: ", props.url);
   let mainPage: any = "";
+  let pageMargins = {"margin": "8px 8px 8px 8px"}
 
   if (props.url === "/") {
+    pageMargins["margin"] = "";
+    mainPage = <div> main page </div>;
+  }
+  else if (props.url === "/travel") {
     mainPage = <TravelMap />;
   }
   else if (props.url === "/alex") {
@@ -25,7 +30,7 @@ function HomePage(props) {
   }
 
   return (
-    <div id="defining-container">
+    <div style={pageMargins} id="defining-container">
       {mainPage}
     </div>
   );
