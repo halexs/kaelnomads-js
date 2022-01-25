@@ -72,7 +72,7 @@ function TravelMap(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {markerList}
         <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
-        <SetViewOnClick />
+        {/*<SetViewOnClick />*/}
         <TravelMapLegend />
       </MapContainer>
       </div>
