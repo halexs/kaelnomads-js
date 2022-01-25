@@ -20,15 +20,14 @@ class TravelMapLegend extends React.Component {
         legendTitle.style.margin = "0";
         panelDiv.appendChild(legendTitle);
 
-
         for (let i = 0; i < Object.keys(locations).length; i++) {
           let currentLocation = document.createElement("a");
           currentLocation.onclick = function() {
             map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
-          }
+          };
           let duration = "";
           if (locations[i]["timeUnit"] === "D" && locations[i]["time"] === "1") {
-            duration = "Overnight "
+            duration = "Overnight ";
           }
           else {
             let unit = "";
@@ -42,7 +41,7 @@ class TravelMapLegend extends React.Component {
             if (timeStayed > 1) {
               unit += "s";
             }
-            duration = `${timeStayed} ${unit}`
+            duration = `${timeStayed} ${unit}`;
           }
           currentLocation.innerHTML = `${duration} in ${locations[i]["city"]}, ${locations[i]["state"]}`;
           const linebreak = document.createElement("br");
@@ -50,6 +49,13 @@ class TravelMapLegend extends React.Component {
           panelDiv.appendChild(linebreak);
 
         }
+
+        let resetMap = document.createElement("button");
+        resetMap.onclick = function() {
+          map.setView(new L.LatLng(37.61, -96.322))
+        };
+        resetMap.innerHTML = "Reset Map";
+        panelDiv.appendChild(resetMap);
 
         map.addEventListener("click", (ev) => {
           console.log(`Latitude, Longitude: ${ev.latlng}`);
