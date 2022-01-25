@@ -36,6 +36,7 @@ function App() {
     // hideAppBar["display"] = "none";
     // hideAppBar["display"] = "block";
     // hideAppBar["visibility"] = "hidden";
+    // hideAppBar["visibility"] = "visible";
 
   }
   else if (window.location.pathname === "/travel") {
@@ -55,7 +56,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
       {/*hideAppBar*/}
-        <AppBar color="transparent" style={{"visibility": hideAppBar}} id="app-bar-style" position="static" elevation={0}>
+        <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="static" elevation={0}>
           <Toolbar>
           <div> Welcome to Alex and Keily's Adventure!
           </div>
@@ -78,11 +79,16 @@ function App() {
         {/*<div hidden={currentSelected !== 0}> main menu part 2</div>*/}
 
         <Routes>
-          {/*<Route path="/" element={<div></div>} />*/}
+          {/*<Route path="/" element={<div></div>} /> */}
+          <Route path="/" element={<HomePage url="/" changeTab={setSelectedTab} />} />
+          <Route path="/travel" element={<HomePage url="/travel" changeTab={setSelectedTab} />} />
+          <Route path="/alex" element={<HomePage url="/alex" changeTab={setSelectedTab} />} />
+          <Route path="/keily" element={<HomePage url="/keily" changeTab={setSelectedTab} />} />
+          {/*
           <Route path="/" element={<HomePage url="/" />} />
           <Route path="/travel" element={<HomePage url="/travel" />} />
           <Route path="/alex" element={<HomePage url="/alex" />} />
-          <Route path="/keily" element={<HomePage url="/keily" />} />
+          <Route path="/keily" element={<HomePage url="/keily" />} />*/}
 
           {/*<Route path="/" element={<HomePage changeVisibility={changeVisibility} url="/" />} />
           <Route path="/travel" element={<HomePage changeVisibility={changeVisibility} url="/travel" />} />
