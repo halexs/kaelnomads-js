@@ -10,20 +10,58 @@ class TravelMapLegend extends React.Component {
     const MapInfo = L.Control.extend({
       onAdd: (map) => {
         const panelDiv = L.DomUtil.create("div", "info");
+        panelDiv.align = "left";
         panelDiv.style.border = "solid black";
         panelDiv.style.padding = "4px 4px 4px 4px";
         panelDiv.style.backgroundColor = "#e9ebe6";
+        let legendTitle = document.createElement("h3");
+        legendTitle.innerHTML = "Places we've been"
+        legendTitle.style.margin = "0";
+        // const linebreak = document.createElement("br");
+        panelDiv.appendChild(legendTitle);
+        // panelDiv.appendChild(linebreak);
 
-        let testLink = document.createElement("a");
-        // testLink.onclick = function() {alert("this works"); console.log("maps: ", map); console.log("locs: ", locations); };
-        testLink.onclick = function() {
-          map.setView(new L.LatLng(39.4422, -105.2999), map.getZoom(), {
-            animate: true,
-          })
-        };
-        testLink.innerHTML = "clickable a link";
 
-        {/* DOES NOT WORK: let testLink = <a onclick="() => alert('test2')" > for future components </a>; */}
+        for (let i = 0; i < Object.keys(locations).length; i++) {
+          let currentLocation = document.createElement("a");
+          currentLocation.onclick = function() {
+            map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
+          }
+          let duration = "";
+          if (locations[i]["timeUnit"] === "D" && locations[i]["time"] === "1") {
+            duration = "Overnight "
+          }
+          else {
+            let unit = "";
+            let timeStayed = locations[i]["time"];
+            if (locations[i]["timeUnit"] === "D") {
+              unit = "Day";
+            }
+            else if (locations[i]["timeUnit"] === "M") {
+              unit = "Month";
+            }
+            if (timeStayed > 1) {
+              unit += "s";
+            }
+            duration = `${timeStayed} ${unit}`
+          }
+          currentLocation.innerHTML = `${duration} in ${locations[i]["city"]}, ${locations[i]["state"]}`;
+          const linebreak = document.createElement("br");
+          panelDiv.appendChild(currentLocation);
+          panelDiv.appendChild(linebreak);
+
+        }
+
+        // let testLink = document.createElement("a");
+        // // testLink.onclick = function() {alert("this works"); console.log("maps: ", map); console.log("locs: ", locations); };
+        // testLink.onclick = function() {
+        //   map.setView(new L.LatLng(39.4422, -105.2999), map.getZoom(), {
+        //     animate: true,
+        //   })
+        // };
+        // testLink.innerHTML = "clickable a link";
+
+        /* DOES NOT WORK: let testLink = <a onclick="() => alert('test2')" > for future components </a>; */
         // testLink.style.color = "blue";
         // panelDiv.innerHTML = "this is the legend";
         // panelDiv.innerHTML = "<a onclick={() => {alert('hello')}}> clickable legend </a>";
@@ -37,7 +75,7 @@ class TravelMapLegend extends React.Component {
         //   console.log(displayText);
         // });
 
-        panelDiv.appendChild(testLink);
+        // panelDiv.appendChild(testLink);
         return panelDiv;
       },
     });

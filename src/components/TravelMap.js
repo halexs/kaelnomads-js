@@ -23,6 +23,7 @@ function TravelMap(props) {
       "state": "VA",
       // "stay": "apartment",
       "time": "12",
+      "timeUnit": "M",
       "coordinates": [38.85, -77.342]
     },
     1: {
@@ -30,25 +31,29 @@ function TravelMap(props) {
       "state": "DC",
       // "stay": "apartment",
       "time": "3",
+      "timeUnit": "M",
       "coordinates": [38.90, -77.02]
     },
     2: {
       "city": "Cincinnati",
       "state": "OH",
-      "time": "0",
+      "time": "1",
+      "timeUnit": "D",
       // "stay": "transit",
       "coordinates": [39.12, -84.51]
     },
     3: {
       "city": "Kansas City",
       "state": "MO",
-      "time": "0",
+      "time": "1",
+      "timeUnit": "D",
       "coordinates": [39.121, -94.58]
     },
     4: {
       "city": "Denver",
       "state": "CO",
       "time": "3",
+      "timeUnit": "M",
       "coordinates": [39.913, -104.95]
     }
   }
@@ -70,7 +75,7 @@ function TravelMap(props) {
       <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {markerList}
+        { markerList }
         <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
         {/*<SetViewOnClick />*/}
         <TravelMapLegend locations={locationList} />
