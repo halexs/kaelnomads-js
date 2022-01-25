@@ -10,6 +10,7 @@ class TravelMapLegend extends React.Component {
     const MapInfo = L.Control.extend({
       onAdd: (map) => {
         const panelDiv = L.DomUtil.create("div", "info");
+        // Default align is center, this allows left align
         panelDiv.align = "left";
         panelDiv.style.border = "solid black";
         panelDiv.style.padding = "4px 4px 4px 4px";
@@ -17,9 +18,7 @@ class TravelMapLegend extends React.Component {
         let legendTitle = document.createElement("h3");
         legendTitle.innerHTML = "Places we've been"
         legendTitle.style.margin = "0";
-        // const linebreak = document.createElement("br");
         panelDiv.appendChild(legendTitle);
-        // panelDiv.appendChild(linebreak);
 
 
         for (let i = 0; i < Object.keys(locations).length; i++) {
@@ -52,30 +51,10 @@ class TravelMapLegend extends React.Component {
 
         }
 
-        // let testLink = document.createElement("a");
-        // // testLink.onclick = function() {alert("this works"); console.log("maps: ", map); console.log("locs: ", locations); };
-        // testLink.onclick = function() {
-        //   map.setView(new L.LatLng(39.4422, -105.2999), map.getZoom(), {
-        //     animate: true,
-        //   })
-        // };
-        // testLink.innerHTML = "clickable a link";
+        map.addEventListener("click", (ev) => {
+          console.log(`Latitude, Longitude: ${ev.latlng}`);
+        });
 
-        /* DOES NOT WORK: let testLink = <a onclick="() => alert('test2')" > for future components </a>; */
-        // testLink.style.color = "blue";
-        // panelDiv.innerHTML = "this is the legend";
-        // panelDiv.innerHTML = "<a onclick={() => {alert('hello')}}> clickable legend </a>";
-
-        // <h2><span>Lat: 39.4422</span>&nbsp;<span>Long: -105.2999</span></h2>
-
-        // map.addEventListener("click", (ev) => {
-        //   // let displayText = `<h2><span>Lat: ${ev.latlng.lat.toFixed(4)}</span>&nbsp;<span>Long: ${ev.latlng.lng.toFixed(4)}</span></h2>`;
-        //   let displayText = `<h2><span>Lat and Lng: ${ev.latlng}</span></h2>`;
-        //   panelDiv.innerHTML = displayText;
-        //   console.log(displayText);
-        // });
-
-        // panelDiv.appendChild(testLink);
         return panelDiv;
       },
     });
@@ -84,10 +63,6 @@ class TravelMapLegend extends React.Component {
 
   componentDidMount() {
     const {map, locations} = this.props;
-    // console.log("props", this.props);
-    // const {locations} = this.props;
-    // console.log("locations", this.props["locations"]);
-    // console.log("locations", locations);
     const control = this.createControl(locations);
     control.addTo(map);
   }
