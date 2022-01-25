@@ -68,29 +68,47 @@ function TravelMap(props) {
     const startRGB = "#499ac9";
     const endRGB = "#d18238";
 
-    const startR = parseInt(startRGB.slice(1,3));
-    const startG = parseInt(startRGB.slice(3,5));
-    const startB = parseInt(startRGB.slice(5));
-    console.log("start RGB: ", startR, startG, startB);
+    const startR = startRGB.slice(1,3);
+    const startG = startRGB.slice(3,5);
+    const startB = startRGB.slice(5);
+    // console.log("start RGB: ", startR, startG, startB);
 
-    const endR = parseInt(endRGB.slice(1,3));
-    const endG = parseInt(endRGB.slice(3,5));
-    const endB = parseInt(endRGB.slice(5));
-    console.log("end RGB: ", endR, endG, endB);
+    const endR = endRGB.slice(1,3);
+    const endG = endRGB.slice(3,5);
+    const endB = endRGB.slice(5);
+    // console.log("end RGB: ", endR, endG, endB);
 
     const calculateColor = (start, end, currentIndex, totalLocations) => {
-      let finalCalc = (start + end) * currentIndex / totalLocations;
-      let hexCalc = finalCalc.toString(16);
-      return hexCalc
+      const startColor = parseInt(start, 16);
+      const endColor = parseInt(end, 16);
+      let finalColor = "00";
+      // let 
 
+      if (currentIndex === 0) {
+        finalColor = start;
+      }
+      else if (currentIndex === (totalLocations - 1)) {
+        finalColor = end;
+      }
+      else {
+        // console.log("start color: ", startColor);
+        // console.log("end color: ", endColor);
+        let finalCalc = Math.floor((startColor + endColor) * currentIndex / totalLocations);
+        // console.log("current color int: ", finalCalc);
+        finalColor = finalCalc.toString(16);
+        // let hexCalc = finalCalc.toString(16);
+      }
+      return finalColor;
     }
+
     const currentR = calculateColor(startR, endR, currentIndex, totalLocations);
     const currentG = calculateColor(startG, endG, currentIndex, totalLocations);
     const currentB = calculateColor(startB, endB, currentIndex, totalLocations);
 
     const currentColor = `${currentR}${currentG}${currentB}`
-    console.log("current color: ", currentColor);
+    console.log("current color for i out of total: ", currentIndex, " ", totalLocations, " ", currentColor);
     return currentColor;
+    // return "hello";
   }
 
   let markerList = [];
@@ -100,10 +118,21 @@ function TravelMap(props) {
       {/*<Popup>{locationList[i]["city"]}, {locationList[i]["state"]} <br /> Location {i} </Popup>*/}
       <Tooltip>{locationList[i]["city"]}, {locationList[i]["state"]} <br /> Location {i} </Tooltip>
     </Marker>;
-    let currentColor = colorPicker(i, Object.keys(locationList).length);
-    polyline.push(locationList[i]["coordinates"])
+    // console.log("current index: ", i);
+    // console.log("max index : ", i);
+    if (i < (Object.keys(locationList).length - 1)) {
+      let currentColor = "#" + colorPicker(i, Object.keys(locationList).length);
+      console.log("current color: ", currentColor);
+      let newColors = {"color": currentColor};
+      let currentLine = <Polyline key={`route-${i}-${i+1}`} pathOptions={newColors} positions={[locationList[i]["coordinates"], locationList[i + 1]["coordinates"]]} />;
+      polyline.push(currentLine);
+    }
+    // polyline.push(locationList[i]["coordinates"])
     markerList.push(currentMarker);
   }
+
+  console.log("polyline", polyline);
+  console.log("markerList", markerList);
 
   return (
     <div id="map-border">
@@ -112,7 +141,8 @@ function TravelMap(props) {
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         { markerList }
-        <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
+        { polyline }
+        {/*<Polyline pathOptions={{ color: 'grey' }} positions={polyline} />*/}
         {/*<SetViewOnClick />*/}
         <TravelMapLegend locations={locationList} />
       </MapContainer>
