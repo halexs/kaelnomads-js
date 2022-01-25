@@ -82,22 +82,30 @@ function TravelMap(props) {
       const startColor = parseInt(start, 16);
       const endColor = parseInt(end, 16);
       let finalColor = "00";
-      // let 
+      // starts: startColor + (endColor - startColor) * (currentIndex ) / totalLocations;
+      // let finalCalc = Math.floor((startColor + endColor) * (currentIndex + 1) / totalLocations);
+      let finalCalc = Math.floor(startColor + (endColor - startColor) * currentIndex / (totalLocations - 1));
+      finalColor = finalCalc.toString(16);
+      // console.log("currentIndex: ", currentIndex);
+      // console.log("start color: ", startColor);
+      // console.log("end color: ", endColor);
+      // console.log("final color: ", finalCalc);
 
-      if (currentIndex === 0) {
-        finalColor = start;
-      }
-      else if (currentIndex === (totalLocations - 1)) {
-        finalColor = end;
-      }
-      else {
-        // console.log("start color: ", startColor);
-        // console.log("end color: ", endColor);
-        let finalCalc = Math.floor((startColor + endColor) * currentIndex / totalLocations);
-        // console.log("current color int: ", finalCalc);
-        finalColor = finalCalc.toString(16);
-        // let hexCalc = finalCalc.toString(16);
-      }
+      // if (currentIndex === 0) {
+      //   finalColor = start;
+      // }
+      // else if (currentIndex === (totalLocations - 1)) {
+      //   finalColor = end;
+      // }
+      // else {
+      //   // console.log("start color: ", startColor);
+      //   // console.log("end color: ", endColor);
+      //   let finalCalc = Math.floor((startColor + endColor) * currentIndex / totalLocations);
+      //   // console.log("current color int: ", finalCalc);
+      //   finalColor = finalCalc.toString(16);
+      //   // let hexCalc = finalCalc.toString(16);
+      // }
+
       return finalColor;
     }
 
