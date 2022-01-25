@@ -48,10 +48,10 @@ function HomePage(props) {
 
       <Grid item xs={3}>
        <div id="main-page">
-          main page
-          <Button onClick={() => navigate('/travel')} > Go to Our Travels </Button>
-          <Button onClick={() => navigate('/alex')} > Go to Alex's Profile </Button>
-          <Button onClick={() => navigate('/keily')} >  Go to Keily's Profile </Button>
+          {/*main page*/}
+          <Button onClick={() => navigate('/travel')} > Our Travels </Button>
+          <Button onClick={() => navigate('/alex')} > Alex's Profile </Button>
+          <Button onClick={() => navigate('/keily')} >  Keily's Profile </Button>
           {/*<Button onClick={() => navigate('/travel')}> Go to Our Travels </Button>
           <Button onClick={() => navigate('/alex')}> Go to Alex's Profile </Button>
           <Button onClick={() => navigate('/keily')}>  Go to Keily's Profile </Button>*/}

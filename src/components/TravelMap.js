@@ -73,7 +73,7 @@ function TravelMap(props) {
         {markerList}
         <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
         {/*<SetViewOnClick />*/}
-        <TravelMapLegend />
+        <TravelMapLegend locations={locationList} />
       </MapContainer>
       </div>
     </div>
