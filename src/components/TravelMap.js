@@ -1,6 +1,17 @@
-import React from 'react'
-import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip } from 'react-leaflet'
-import "./TravelMap.css"
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip, useMapEvent } from 'react-leaflet';
+import "./TravelMap.css";
+import TravelMapLegend from "./TravelMapLegend";
+
+function SetViewOnClick() {
+  const map = useMapEvent('click', (e) => {
+    map.setView(e.latlng, map.getZoom(), {
+      animate: true,
+    })
+  })
+
+  return null
+}
 
 function TravelMap(props) {
 
@@ -56,11 +67,13 @@ function TravelMap(props) {
   return (
     <div id="map-border">
       <div id="map-container">
-      <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={true}>
+      <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {markerList}
         <Polyline pathOptions={{ color: 'grey' }} positions={polyline} />
+        <SetViewOnClick />
+        <TravelMapLegend />
       </MapContainer>
       </div>
     </div>
