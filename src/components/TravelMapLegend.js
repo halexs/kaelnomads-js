@@ -6,7 +6,7 @@ import "./TravelMapLegend.css";
 
 class TravelMapLegend extends React.Component {
 
-  createControl(locations) {
+  createControl(locations, setOpen) {
     const MapInfo = L.Control.extend({
       onAdd: (map) => {
         const panelDiv = L.DomUtil.create("div", "info");
@@ -24,6 +24,7 @@ class TravelMapLegend extends React.Component {
           let currentLocation = document.createElement("a");
           currentLocation.onclick = function() {
             map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
+            setOpen(true);
           };
           let duration = "";
           if (locations[i]["timeUnit"] === "D" && locations[i]["time"] === "1") {
@@ -68,8 +69,9 @@ class TravelMapLegend extends React.Component {
   }
 
   componentDidMount() {
-    const {map, locations} = this.props;
-    const control = this.createControl(locations);
+    const {map, locations, setOpen} = this.props;
+    console.log("props: ", this.props);
+    const control = this.createControl(locations, setOpen);
     control.addTo(map);
   }
 

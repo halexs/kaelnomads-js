@@ -2,6 +2,28 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip, useMapEvent } from 'react-leaflet';
 import "./TravelMap.css";
 import TravelMapLegend from "./TravelMapLegend";
+import LocationsModal from "./LocationsModal";
+
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+
+const style = {
+  // position: 'absolute' as 'absolute',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function SetViewOnClick() {
   const map = useMapEvent('click', (e) => {
@@ -82,29 +104,8 @@ function TravelMap(props) {
       const startColor = parseInt(start, 16);
       const endColor = parseInt(end, 16);
       let finalColor = "00";
-      // starts: startColor + (endColor - startColor) * (currentIndex ) / totalLocations;
-      // let finalCalc = Math.floor((startColor + endColor) * (currentIndex + 1) / totalLocations);
       let finalCalc = Math.floor(startColor + (endColor - startColor) * currentIndex / (totalLocations - 1));
       finalColor = finalCalc.toString(16);
-      // console.log("currentIndex: ", currentIndex);
-      // console.log("start color: ", startColor);
-      // console.log("end color: ", endColor);
-      // console.log("final color: ", finalCalc);
-
-      // if (currentIndex === 0) {
-      //   finalColor = start;
-      // }
-      // else if (currentIndex === (totalLocations - 1)) {
-      //   finalColor = end;
-      // }
-      // else {
-      //   // console.log("start color: ", startColor);
-      //   // console.log("end color: ", endColor);
-      //   let finalCalc = Math.floor((startColor + endColor) * currentIndex / totalLocations);
-      //   // console.log("current color int: ", finalCalc);
-      //   finalColor = finalCalc.toString(16);
-      //   // let hexCalc = finalCalc.toString(16);
-      // }
 
       return finalColor;
     }
@@ -114,7 +115,7 @@ function TravelMap(props) {
     const currentB = calculateColor(startB, endB, currentIndex, totalLocations);
 
     const currentColor = `${currentR}${currentG}${currentB}`
-    console.log("current color for i out of total: ", currentIndex, " ", totalLocations, " ", currentColor);
+    // console.log("current color for i out of total: ", currentIndex, " ", totalLocations, " ", currentColor);
     return currentColor;
     // return "hello";
   }
@@ -130,7 +131,7 @@ function TravelMap(props) {
     // console.log("max index : ", i);
     if (i < (Object.keys(locationList).length - 1)) {
       let currentColor = "#" + colorPicker(i, Object.keys(locationList).length);
-      console.log("current color: ", currentColor);
+      // console.log("current color: ", currentColor);
       let newColors = {"color": currentColor};
       let currentLine = <Polyline key={`route-${i}-${i+1}`} pathOptions={newColors} positions={[locationList[i]["coordinates"], locationList[i + 1]["coordinates"]]} />;
       polyline.push(currentLine);
@@ -139,21 +140,53 @@ function TravelMap(props) {
     markerList.push(currentMarker);
   }
 
-  console.log("polyline", polyline);
-  console.log("markerList", markerList);
+  // console.log("polyline", polyline);
+  // console.log("markerList", markerList);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div id="map-border">
       <div id="map-container">
-      <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
-        <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        { markerList }
-        { polyline }
-        {/*<Polyline pathOptions={{ color: 'grey' }} positions={polyline} />*/}
-        {/*<SetViewOnClick />*/}
-        <TravelMapLegend locations={locationList} />
-      </MapContainer>
+        <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
+          <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          { markerList }
+          { polyline }
+          {/*<Polyline pathOptions={{ color: 'grey' }} positions={polyline} />*/}
+          {/*<SetViewOnClick />*/}
+          <TravelMapLegend setOpen={setOpen} locations={locationList} />
+        </MapContainer>
+
+
+        <Button onClick={handleOpen}>Open modal</Button>
+        <LocationsModal open={open} setOpen={setOpen} handleClose={handleClose} />
+        {/*<Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+            
+          <Fade in={open}>
+
+          <Box sx={style}>
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+          </Fade>
+        </Modal>*/}
       </div>
     </div>
   );
