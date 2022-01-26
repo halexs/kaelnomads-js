@@ -143,9 +143,13 @@ function TravelMap(props) {
   // console.log("polyline", polyline);
   // console.log("markerList", markerList);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
+
+  const [open, setOpen] = React.useState("");
+  const handleOpen = () => setOpen("open");
+  const handleClose = () => setOpen("");
 
   return (
     <div id="map-border">
@@ -161,8 +165,9 @@ function TravelMap(props) {
         </MapContainer>
 
 
-        <Button onClick={handleOpen}>Open modal</Button>
-        <LocationsModal open={open} setOpen={setOpen} handleClose={handleClose} />
+        {/*<Button onClick={handleOpen}>Open modal</Button>*/}
+        {/*<Button onClick={() => {console.log({open})}}>Open modal</Button>*/}
+        <LocationsModal open={open} setOpen={setOpen} handleClose={handleClose} locations={locationList} />
         {/*<Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"

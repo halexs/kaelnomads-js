@@ -24,7 +24,7 @@ class TravelMapLegend extends React.Component {
           let currentLocation = document.createElement("a");
           currentLocation.onclick = function() {
             map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
-            setOpen(true);
+            setOpen("open" + i);
           };
           let duration = "";
           if (locations[i]["timeUnit"] === "D" && locations[i]["time"] === "1") {
