@@ -23,9 +23,14 @@ const style = {
 };
 
 function LocationsModal(props) {
+  // let selected_index = parseInt(props.open);
+  // if (selected_index in props.locations) {
+  let selectedLocation = ""
+  if (props.open in props.locations) {
+    selectedLocation = props.locations[props.open];
+    console.log("current object", selectedLocation);
 
-  // let open = props.open;
-  // let setOpen 
+  }
 
   return (
     <Modal
@@ -38,14 +43,13 @@ function LocationsModal(props) {
       BackdropProps={{
         timeout: 500,
       }}
-    >
-        
+    >   
       <Fade in={props.open !== ""}>
 
         <Box sx={style}>
           <Button onClick={() => {console.log(props.open)}}> check open var </Button>
           <Typography id="transition-modal-title" variant="h6" component="h2">
-            Text in a modal {props.open}
+            Text in a modal index: {props.open}
           </Typography>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.

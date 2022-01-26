@@ -18,13 +18,15 @@ class TravelMapLegend extends React.Component {
         let legendTitle = document.createElement("h3");
         legendTitle.innerHTML = "Places we've been"
         legendTitle.style.margin = "0";
+        legendTitle.style.color = "black";
         panelDiv.appendChild(legendTitle);
 
         for (let i = 0; i < Object.keys(locations).length; i++) {
           let currentLocation = document.createElement("a");
           currentLocation.onclick = function() {
             map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
-            setOpen("open" + i);
+            setOpen(i.toString());
+            // setOpen("open" + i);
           };
           let duration = "";
           if (locations[i]["timeUnit"] === "D" && locations[i]["time"] === "1") {

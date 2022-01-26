@@ -8,6 +8,16 @@ import Toolbar from '@mui/material/Toolbar'
 import AppBar from '@mui/material/AppBar';
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
+// import { makeStyles } from "@mui/core";
+
+// const useStyles = makeStyles(theme => ({
+//   indicator: {
+//     backgroundColor: "green",
+//     height: "10px",
+//     top: "45px"
+//   }
+// }));
+
 function App() {
   let currentSelected: number = 0;
 
@@ -68,10 +78,10 @@ function App() {
             textColor="primary"
             aria-label="basic tabs example" centered
           >
-            <Tab label="Home" component={Link} to="/" />
-            <Tab label="Adventures" component={Link} to="/travel" />
-            <Tab label="Alex" component={Link} to="/alex" />
-            <Tab label="Keily" component={Link} to="/keily" />
+            <Tab style={{color: "white"}} label="Home" component={Link} to="/" />
+            <Tab style={{color: "white"}} label="Adventures" component={Link} to="/travel" />
+            <Tab style={{color: "white"}} label="Alex" component={Link} to="/alex" />
+            <Tab style={{color: "white"}} label="Keily" component={Link} to="/keily" />
           </Tabs>
           </Toolbar>
         </AppBar>
