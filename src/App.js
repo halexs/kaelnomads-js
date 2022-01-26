@@ -21,32 +21,12 @@ import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 function App() {
   let currentSelected: number = 0;
 
-  // let hideAppBar = false;
   let hideAppBar = "";
-  // const [hideAppBar, setHideAppBar] = React.useState("");
-  // const changeVisibility = (show) => {
-  //   console.log("changing visibility to: ");
-  //   if (show === true) {
-  //     // hideAppBar = "";
-  //     setHideAppBar("")
-  //     console.log("show");
-  //     // hideAppBar["visibililty"] = "";
-  //   }
-  //   else {
-  //     // hideAppBar = "hidden";
-  //     setHideAppBar("hidden")
-  //     console.log("hidden");
-  //   }
-  // }
 
   if (window.location.pathname === "/") {
     console.log("inside / now");
     currentSelected = 0;
     hideAppBar = "hidden";
-    // hideAppBar["display"] = "none";
-    // hideAppBar["display"] = "block";
-    // hideAppBar["visibility"] = "hidden";
-    // hideAppBar["visibility"] = "visible";
 
   }
   else if (window.location.pathname === "/travel") {
@@ -86,24 +66,11 @@ function App() {
           </Toolbar>
         </AppBar>
 
-        {/*<div hidden={currentSelected !== 0}> main menu part 2</div>*/}
-
         <Routes>
-          {/*<Route path="/" element={<div></div>} /> */}
           <Route path="/" element={<HomePage url="/" changeTab={setSelectedTab} />} />
           <Route path="/travel" element={<HomePage url="/travel" changeTab={setSelectedTab} />} />
           <Route path="/alex" element={<HomePage url="/alex" changeTab={setSelectedTab} />} />
           <Route path="/keily" element={<HomePage url="/keily" changeTab={setSelectedTab} />} />
-          {/*
-          <Route path="/" element={<HomePage url="/" />} />
-          <Route path="/travel" element={<HomePage url="/travel" />} />
-          <Route path="/alex" element={<HomePage url="/alex" />} />
-          <Route path="/keily" element={<HomePage url="/keily" />} />*/}
-
-          {/*<Route path="/" element={<HomePage changeVisibility={changeVisibility} url="/" />} />
-          <Route path="/travel" element={<HomePage changeVisibility={changeVisibility} url="/travel" />} />
-          <Route path="/alex" element={<HomePage changeVisibility={changeVisibility} url="/alex" />} />
-          <Route path="/keily" element={<HomePage changeVisibility={changeVisibility} url="/keily" />} />*/}
         </Routes>
       </div>
     </BrowserRouter>

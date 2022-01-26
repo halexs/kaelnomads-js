@@ -25,11 +25,27 @@ const style = {
 function LocationsModal(props) {
   // let selected_index = parseInt(props.open);
   // if (selected_index in props.locations) {
-  let selectedLocation = ""
+  let selectedLocation = "";
+  let title = "";
+  let duration = "";
   if (props.open in props.locations) {
     selectedLocation = props.locations[props.open];
     console.log("current object", selectedLocation);
+    
+    // title = `${selectedLocation["city"]}, ${selectedLocation["state"]}`;
+    duration += `${selectedLocation["time"]} `
 
+    if (selectedLocation["timeUnit"] === "M") {
+      duration += "Month";
+    }
+    else if (selectedLocation["timeUnit"] === "D") {
+      duration += "Day";
+    }
+
+    if (selectedLocation["time"] > 1) {
+      duration += "s";
+    }
+    title = `${selectedLocation["city"]}, ${selectedLocation["state"]} for ${duration}` 
   }
 
   return (
@@ -44,18 +60,19 @@ function LocationsModal(props) {
         timeout: 500,
       }}
     >   
-      <Fade in={props.open !== ""}>
+      {/*<Fade in={props.open !== ""}> </Fade>*/}
 
         <Box sx={style}>
-          <Button onClick={() => {console.log(props.open)}}> check open var </Button>
+          {/*<Button onClick={() => {console.log(props.open)}}> check open var </Button>*/}
           <Typography id="transition-modal-title" variant="h6" component="h2">
-            Text in a modal index: {props.open}
+            { title }
           </Typography>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {/*Duis mollis, est non commodo luctus, nisi erat porttitor ligula.*/}
+            ***Pictures Here***
           </Typography>
       </Box>
-      </Fade>
+      
     </Modal>
   )
 
