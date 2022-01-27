@@ -1,17 +1,21 @@
 // import React from 'react';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Polyline, Tooltip } from 'react-leaflet';
 // import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip, useMapEvent } from 'react-leaflet';
 import "./TravelMap.css";
 import TravelMapLegend from "./TravelMapLegend";
 import LocationsModal from "./LocationsModal";
 
+import Alert from '@mui/material/Alert';
+
 function TravelMap(props) {
 
   const centerOnUS = [37.61, -96.322];
   // time is in months
 
-  const [locationList, setLocationList] = useState({});
+  const [locationList, setLocationList] = React.useState("");
+  const [locationLoaded, setLocationLoaded] = React.useState(false);
+
   const [open, setOpen] = React.useState("");
   // const handleOpen = () => setOpen("open");
   const handleClose = () => setOpen("");
@@ -34,7 +38,8 @@ function TravelMap(props) {
       const responseData = await response.json();
 
       // locationList = responseData["body"];
-      setLocationList(responseData["body"])
+      setLocationList(responseData["body"]);
+      setLocationLoaded(true);
     }
 
     fetchMyAPI()
@@ -106,6 +111,7 @@ function TravelMap(props) {
 
   return (
     <div id="map-border">
+      {!locationLoaded && <Alert severity="info">Loading Locations</Alert>}
       <div id="map-container">
         <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -114,13 +120,13 @@ function TravelMap(props) {
           { polyline }
           {/*<Polyline pathOptions={{ color: 'grey' }} positions={polyline} />*/}
           {/*<SetViewOnClick />*/}
-          <TravelMapLegend setOpen={setOpen} locations={locationList} />
+          {locationLoaded && <TravelMapLegend setOpen={setOpen} locations={locationList} />}
         </MapContainer>
 
 
         {/*<Button onClick={handleOpen}>Open modal</Button>*/}
         {/*<Button onClick={() => {console.log({open})}}>Open modal</Button>*/}
-        <LocationsModal open={open} setOpen={setOpen} handleClose={handleClose} locations={locationList} />
+        {locationLoaded && <LocationsModal open={open} setOpen={setOpen} handleClose={handleClose} locations={locationList} />}
       </div>
     </div>
   );

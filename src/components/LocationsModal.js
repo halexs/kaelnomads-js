@@ -30,7 +30,7 @@ function LocationsModal(props) {
   let duration = "";
   if (props.open in props.locations) {
     selectedLocation = props.locations[props.open];
-    console.log("current object", selectedLocation);
+    // console.log("current object", selectedLocation);
     
     // title = `${selectedLocation["city"]}, ${selectedLocation["state"]}`;
     duration += `${selectedLocation["time"]} `
