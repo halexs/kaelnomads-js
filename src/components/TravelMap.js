@@ -41,13 +41,13 @@ function TravelMap(props) {
         // const responseData = await response.json();
         const responseData = await response.json();
         location = responseData["body"];
-        console.log("saving to session storage", location);
+        // console.log("saving to session storage", location);
         sessionStorage.setItem('locations', JSON.stringify(location));
         // locationList = responseData["body"];
       }
       else {
         location = JSON.parse(sessionStorage.getItem('locations'));
-        console.log("pulling from session storage", location);
+        // console.log("pulling from session storage", location);
       }
 
       setLocationList(location);

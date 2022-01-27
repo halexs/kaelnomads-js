@@ -22,11 +22,9 @@ function App() {
   let currentSelected: number = 0;
 
   if (window.location.pathname === "/") {
-    console.log("inside / now");
     currentSelected = 0;
   }
   else if (window.location.pathname === "/travel") {
-    console.log("inside travel now");
     currentSelected = 1;
   }
   else if (window.location.pathname === "/alex") {

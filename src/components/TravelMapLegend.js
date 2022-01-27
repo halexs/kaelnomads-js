@@ -72,7 +72,7 @@ class TravelMapLegend extends React.Component {
 
   componentDidMount() {
     const {map, locations, setOpen} = this.props;
-    console.log("props: ", this.props);
+    // console.log("props: ", this.props);
     const control = this.createControl(locations, setOpen);
     control.addTo(map);
   }
