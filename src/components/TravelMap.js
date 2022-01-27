@@ -26,19 +26,32 @@ function TravelMap(props) {
       // let response = await fetch('api/data')
       // response = await response.json()
       // dataSet(response)
+      let location = ""
 
-      let response = await fetch("https://acalgr3bv1.execute-api.us-east-1.amazonaws.com/beta/location", {
-        method: "GET",
-        headers: {
-            'X-API-KEY': 'SxL3KevN4f7ZjimW7sRgJ4e4KhOoJXXiVEV4A6Sh',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-      });
-      const responseData = await response.json();
+      if (localStorage.getItem('locations') === null) {
+        console.log("pulling from API");
+        const response = await fetch("https://acalgr3bv1.execute-api.us-east-1.amazonaws.com/beta/location", {
+          method: "GET",
+          headers: {
+              'X-API-KEY': 'SxL3KevN4f7ZjimW7sRgJ4e4KhOoJXXiVEV4A6Sh',
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+        });
+        // const responseData = await response.json();
+        const responseData = await response.json();
+        location = responseData["body"];
+        console.log("saving to local storage", location);
+        localStorage.setItem('locations', JSON.stringify(location));
+        // locationList = responseData["body"];
+      }
+      else {
+        console.log("pulling from local storage");
+        location = JSON.parse(localStorage.getItem('locations'));
+        console.log("locations");
+      }
 
-      // locationList = responseData["body"];
-      setLocationList(responseData["body"]);
+      setLocationList(location);
       setLocationLoaded(true);
     }
 
