@@ -65,6 +65,7 @@ function TravelMap(props) {
   // End: #d18238 (orange)
 
   // Finish colorPicker some other time
+  // Fun gradients: https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/
   const colorPicker = (currentIndex, totalLocations) => {
     // const startRGB = "#499ac9";
     // const endRGB = "#d18238";
