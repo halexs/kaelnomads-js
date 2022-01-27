@@ -24,7 +24,7 @@ class TravelMapLegend extends React.Component {
         for (let i = 0; i < Object.keys(locations).length; i++) {
           let currentLocation = document.createElement("a");
           currentLocation.onclick = function() {
-            map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]))
+            map.setView(new L.LatLng(locations[i]["coordinates"][0], locations[i]["coordinates"][1]), 9);
             setOpen(i.toString());
             // setOpen("open" + i);
           };
@@ -55,7 +55,7 @@ class TravelMapLegend extends React.Component {
 
         let resetMap = document.createElement("button");
         resetMap.onclick = function() {
-          map.setView(new L.LatLng(37.61, -96.322))
+          map.setView(new L.LatLng(37.61, -96.322), 4);
         };
         resetMap.innerHTML = "Reset Map";
         panelDiv.appendChild(resetMap);
