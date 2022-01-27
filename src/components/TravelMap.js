@@ -39,46 +39,82 @@ function TravelMap(props) {
 
   const centerOnUS = [37.61, -96.322];
   // time is in months
-  const locationList = {
-    0: {
-      "city": "Fairfax County",
-      "state": "VA",
-      // "stay": "apartment",
-      "time": "12",
-      "timeUnit": "M",
-      "coordinates": [38.85, -77.342]
+
+  // let locationList = {};
+  // API Key: SxL3KevN4f7ZjimW7sRgJ4e4KhOoJXXiVEV4A6Sh
+
+  fetch("https://acalgr3bv1.execute-api.us-east-1.amazonaws.com/beta/location", {
+    method: "GET",
+    headers: {
+        'X-API-KEY': 'SxL3KevN4f7ZjimW7sRgJ4e4KhOoJXXiVEV4A6Sh',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     },
-    1: {
-      "city": "Washington",
-      "state": "DC",
-      // "stay": "apartment",
-      "time": "3",
-      "timeUnit": "M",
-      "coordinates": [38.90, -77.02]
-    },
-    2: {
-      "city": "Cincinnati",
-      "state": "OH",
-      "time": "2",
-      "timeUnit": "D",
-      // "stay": "transit",
-      "coordinates": [39.12, -84.51]
-    },
-    3: {
-      "city": "Kansas City",
-      "state": "MO",
-      "time": "1",
-      "timeUnit": "D",
-      "coordinates": [39.121, -94.58]
-    },
-    4: {
-      "city": "Denver",
-      "state": "CO",
-      "time": "3",
-      "timeUnit": "M",
-      "coordinates": [39.913, -104.95]
-    }
-  }
+  }).then(response => {
+    response.json().then(responseData => {
+      console.log("response", response);
+      console.log("responseData", responseData);
+      locationList = responseData["body"];
+      console.log("loc: ", locationList);
+    })
+  })
+
+  // const response = await fetch("https://acalgr3bv1.execute-api.us-east-1.amazonaws.com/beta/location", {
+  //   method: "GET",
+  //   headers: {
+  //       'X-API-KEY': 'SxL3KevN4f7ZjimW7sRgJ4e4KhOoJXXiVEV4A6Sh',
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //   },
+  // });
+  // const responseData = await response.json();
+
+  // locationList = responseData["body"];
+
+  // console.log("response", response);
+  // console.log("responseData", responseData);
+  // console.log("loc: ", locationList);
+
+  // const locationList = {
+  //   "0": {
+  //     "city": "Fairfax County",
+  //     "state": "VA",
+  //     // "stay": "apartment",
+  //     "time": "12",
+  //     "timeUnit": "M",
+  //     "coordinates": [38.85, -77.342]
+  //   },
+  //   "1": {
+  //     "city": "Washington",
+  //     "state": "DC",
+  //     // "stay": "apartment",
+  //     "time": "3",
+  //     "timeUnit": "M",
+  //     "coordinates": [38.90, -77.02]
+  //   },
+  //   "2": {
+  //     "city": "Cincinnati",
+  //     "state": "OH",
+  //     "time": "2",
+  //     "timeUnit": "D",
+  //     // "stay": "transit",
+  //     "coordinates": [39.12, -84.51]
+  //   },
+  //   "3": {
+  //     "city": "Kansas City",
+  //     "state": "MO",
+  //     "time": "1",
+  //     "timeUnit": "D",
+  //     "coordinates": [39.121, -94.58]
+  //   },
+  //   "4": {
+  //     "city": "Denver",
+  //     "state": "CO",
+  //     "time": "3",
+  //     "timeUnit": "M",
+  //     "coordinates": [39.913, -104.95]
+  //   }
+  // };
   // Change polylines to be color coded. From Blue being longest away, to Orange being a recent stop.
   // Maybe in the future make it based on length of time, but for now just do it by number of stops.
 
