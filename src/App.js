@@ -21,13 +21,9 @@ import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 function App() {
   let currentSelected: number = 0;
 
-  let hideAppBar = "";
-
   if (window.location.pathname === "/") {
     console.log("inside / now");
     currentSelected = 0;
-    hideAppBar = "hidden";
-
   }
   else if (window.location.pathname === "/travel") {
     console.log("inside travel now");
@@ -45,7 +41,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      {/*hideAppBar*/}
         <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="static" elevation={0}>
           <Toolbar>
           <div> Welcome to Alex and Keily's Adventure!
