@@ -66,8 +66,10 @@ function TravelMap(props) {
 
   // Finish colorPicker some other time
   const colorPicker = (currentIndex, totalLocations) => {
-    const startRGB = "#499ac9";
-    const endRGB = "#d18238";
+    // const startRGB = "#499ac9";
+    // const endRGB = "#d18238";
+    const startRGB = "#ddd6f3";
+    const endRGB = "#faaca8";
 
     const startR = startRGB.slice(1,3);
     const startG = startRGB.slice(3,5);
