@@ -7,7 +7,7 @@ import TravelMapLegend from "./TravelMapLegend";
 import LocationsModal from "./LocationsModal";
 
 import Alert from '@mui/material/Alert';
-import Collapse from '@mui/material/Collapse';
+// import Collapse from '@mui/material/Collapse';
 
 function TravelMap(props) {
 
