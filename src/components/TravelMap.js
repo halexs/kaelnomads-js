@@ -28,7 +28,7 @@ function TravelMap(props) {
       // dataSet(response)
       let location = ""
 
-      if (localStorage.getItem('locations') === null) {
+      if (sessionStorage.getItem('locations') === null) {
         console.log("pulling from API");
         const response = await fetch("https://acalgr3bv1.execute-api.us-east-1.amazonaws.com/beta/location", {
           method: "GET",
@@ -41,14 +41,13 @@ function TravelMap(props) {
         // const responseData = await response.json();
         const responseData = await response.json();
         location = responseData["body"];
-        console.log("saving to local storage", location);
-        localStorage.setItem('locations', JSON.stringify(location));
+        console.log("saving to session storage", location);
+        sessionStorage.setItem('locations', JSON.stringify(location));
         // locationList = responseData["body"];
       }
       else {
-        console.log("pulling from local storage");
-        location = JSON.parse(localStorage.getItem('locations'));
-        console.log("locations");
+        location = JSON.parse(sessionStorage.getItem('locations'));
+        console.log("pulling from session storage", location);
       }
 
       setLocationList(location);
