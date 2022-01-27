@@ -7,6 +7,7 @@ import TravelMapLegend from "./TravelMapLegend";
 import LocationsModal from "./LocationsModal";
 
 import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
 
 function TravelMap(props) {
 
@@ -123,7 +124,11 @@ function TravelMap(props) {
 
   return (
     <div id="map-border">
-      {!locationLoaded && <Alert severity="info">Loading Locations</Alert>}
+      {!locationLoaded && <Alert variant="filled" severity="info">Loading Locations</Alert>}
+
+      {/*<Collapse in={locationLoaded}>
+        <Alert severity="info">Loading Locations</Alert>
+      </Collapse>*/}
       <div id="map-container">
         <MapContainer center={centerOnUS} zoom={4} scrollWheelZoom={false}>
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
