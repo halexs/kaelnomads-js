@@ -35,6 +35,20 @@ function App() {
   }
 
   const [selectedTab, setSelectedTab] = React.useState(currentSelected);
+  // Check if device is mobile or desktop based on screen size
+  const [width, setWidth] = React.useState(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  React.useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+
+  const isMobile = width <= 768;
+  console.log("Device is mobile: ", isMobile);
 
   return (
     <BrowserRouter>
@@ -48,8 +62,11 @@ function App() {
             value={selectedTab}
             onChange={(event,value) => setSelectedTab(value)}
             indicatorColor="primary"
+            variant="scrollable"
+            allowScrollButtonsMobile
             textColor="primary"
-            aria-label="basic tabs example" centered
+            aria-label="basic tabs example" 
+            // centered
           >
             <Tab style={{color: "white"}} label="Home" component={Link} to="/" />
             <Tab style={{color: "white"}} label="Adventures" component={Link} to="/travel" />
@@ -60,10 +77,10 @@ function App() {
         </AppBar>
 
         <Routes>
-          <Route path="/" element={<HomePage url="/" changeTab={setSelectedTab} />} />
-          <Route path="/travel" element={<HomePage url="/travel" changeTab={setSelectedTab} />} />
-          <Route path="/alex" element={<HomePage url="/alex" changeTab={setSelectedTab} />} />
-          <Route path="/keily" element={<HomePage url="/keily" changeTab={setSelectedTab} />} />
+          <Route path="/" element={<HomePage mobile={isMobile} url="/" changeTab={setSelectedTab} />} />
+          <Route path="/travel" element={<HomePage mobile={isMobile} url="/travel" changeTab={setSelectedTab} />} />
+          <Route path="/alex" element={<HomePage mobile={isMobile} url="/alex" changeTab={setSelectedTab} />} />
+          <Route path="/keily" element={<HomePage mobile={isMobile} url="/keily" changeTab={setSelectedTab} />} />
         </Routes>
       </div>
     </BrowserRouter>
