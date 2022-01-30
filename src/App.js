@@ -57,7 +57,7 @@ function App() {
       <div className="App">
         <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="static" elevation={0}>
           <Toolbar>
-          <div> Welcome to Alex and Keily's Adventure!
+          <div style={{color: "white"}}> Welcome to Alex and Keily's Adventure!
           </div>
           <div className="right-align"></div>
           <Tabs
