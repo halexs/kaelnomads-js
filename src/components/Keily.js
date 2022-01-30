@@ -14,7 +14,7 @@ function Keily(props) {
         // </video>}
 
   return (
-    <div style={{width: "60%", color: "white"}}>
+    <div style={{width: "60%"}}>
 
       <Typography id="transition-modal-title" variant="h6" component="h2">
         About Me

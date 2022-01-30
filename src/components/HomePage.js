@@ -79,13 +79,13 @@ function HomePage(props) {
   }
   else if (props.url === "/travel") {
     // props.changeVisibility(true);
-    mainPage = <TravelMap />;
+    mainPage = <TravelMap isMobile={props.isMobile} />;
   }
   else if (props.url === "/alex") {
-    mainPage = <Alex />;
+    mainPage = <Alex isMobile={props.isMobile} />;
   }
   else if (props.url === "/keily") {
-    mainPage = <Keily />;
+    mainPage = <Keily isMobile={props.isMobile} />;
   }
 
   return (

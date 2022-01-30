@@ -8,15 +8,15 @@ import Toolbar from '@mui/material/Toolbar'
 import AppBar from '@mui/material/AppBar';
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
-// import { makeStyles } from "@mui/core";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// const useStyles = makeStyles(theme => ({
-//   indicator: {
-//     backgroundColor: "green",
-//     height: "10px",
-//     top: "45px"
-//   }
-// }));
+const theme = createTheme({
+  // palette: {
+  //   primary: {
+  //     main: "#0000FF"
+  //   }
+  // }
+});
 
 function App() {
   let currentSelected: number = 0;
@@ -51,6 +51,8 @@ function App() {
   console.log("Device is mobile: ", isMobile);
 
   return (
+
+    <ThemeProvider theme={theme}>
     <BrowserRouter>
       <div className="App">
         <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="static" elevation={0}>
@@ -77,13 +79,14 @@ function App() {
         </AppBar>
 
         <Routes>
-          <Route path="/" element={<HomePage mobile={isMobile} url="/" changeTab={setSelectedTab} />} />
-          <Route path="/travel" element={<HomePage mobile={isMobile} url="/travel" changeTab={setSelectedTab} />} />
-          <Route path="/alex" element={<HomePage mobile={isMobile} url="/alex" changeTab={setSelectedTab} />} />
-          <Route path="/keily" element={<HomePage mobile={isMobile} url="/keily" changeTab={setSelectedTab} />} />
+          <Route path="/" element={<HomePage isMobile={isMobile} url="/" changeTab={setSelectedTab} />} />
+          <Route path="/travel" element={<HomePage isMobile={isMobile} url="/travel" changeTab={setSelectedTab} />} />
+          <Route path="/alex" element={<HomePage isMobile={isMobile} url="/alex" changeTab={setSelectedTab} />} />
+          <Route path="/keily" element={<HomePage isMobile={isMobile} url="/keily" changeTab={setSelectedTab} />} />
         </Routes>
       </div>
     </BrowserRouter>
+    </ThemeProvider>
   );
 
 }

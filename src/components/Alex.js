@@ -3,8 +3,15 @@ import Typography from '@mui/material/Typography';
 
 function Alex(props) {
 
+  let textColor = "black";
+  if (props.isMobile) {
+    textColor = "black";
+    console.log("alex props", props);
+  }
+
+
   return (
-    <div style={{width: "60%", color: "white"}}>
+    <div style={{width: "60%", color: textColor}}>
 
       <Typography id="transition-modal-title" variant="h6" component="h2">
         About Me
