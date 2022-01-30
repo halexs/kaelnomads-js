@@ -1,0 +1,37 @@
+{
+	"0": {
+		"city": "Fairfax County",
+		"state": "VA",
+		"time": "12",
+		"timeUnit": "M",
+		"coordinates": [38.85, -77.342]
+	},
+	"1": {
+		"city": "Washington",
+		"state": "DC",
+		"time": "3",
+		"timeUnit": "M",
+		"coordinates": [38.90, -77.02]
+	},
+	"2": {
+		"city": "Cincinnati",
+		"state": "OH",
+		"time": "2",
+		"timeUnit": "D",
+		"coordinates": [39.12, -84.51]
+	},
+	"3": {
+		"city": "Kansas City",
+		"state": "MO",
+		"time": "1",
+		"timeUnit": "D",
+		"coordinates": [39.121, -94.58]
+	},
+	"4": {
+		"city": "Denver",
+		"state": "CO",
+		"time": "3",
+		"timeUnit": "M",
+		"coordinates": [39.913, -104.95]
+	}
+}
