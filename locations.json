@@ -4,14 +4,16 @@
 		"state": "VA",
 		"time": "12",
 		"timeUnit": "M",
-		"coordinates": [38.85, -77.342]
+		"coordinates": [38.85, -77.342],
+		"description": ""
 	},
 	"1": {
 		"city": "Washington",
 		"state": "DC",
 		"time": "3",
 		"timeUnit": "M",
-		"coordinates": [38.90, -77.02]
+		"coordinates": [38.90, -77.02],
+		"description": ""
 	},
 	"2": {
 		"city": "Cincinnati",
@@ -25,13 +27,15 @@
 		"state": "MO",
 		"time": "1",
 		"timeUnit": "D",
-		"coordinates": [39.121, -94.58]
+		"coordinates": [39.121, -94.58],
+		"description": ""
 	},
 	"4": {
 		"city": "Denver",
 		"state": "CO",
 		"time": "3",
 		"timeUnit": "M",
-		"coordinates": [39.913, -104.95]
+		"coordinates": [39.913, -104.95],
+		"description": ""
 	}
 }
