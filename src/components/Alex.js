@@ -6,7 +6,6 @@ function Alex(props) {
   let textColor = "black";
   if (props.isMobile) {
     textColor = "black";
-    console.log("alex props", props);
   }
 
 

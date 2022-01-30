@@ -13,8 +13,14 @@ function Keily(props) {
         //     <source src="https://v.redd.it/66yac5glphc81/DASH_1080.mp4" type="video/mp4" />
         // </video>}
 
+  let textColor = "black";
+  if (props.isMobile) {
+    textColor = "black";
+  }
+
+
   return (
-    <div style={{width: "60%"}}>
+    <div style={{width: "60%", color: textColor}}>
 
       <Typography id="transition-modal-title" variant="h6" component="h2">
         About Me
