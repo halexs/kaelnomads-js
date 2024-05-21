@@ -70,7 +70,7 @@ function HomePage(props) {
           <Button onClick={() => navigate('/travel')} > Our Travels </Button>
           <Button onClick={() => navigate('/alex')} > Alex's Profile </Button>
           <Button onClick={() => navigate('/keily')} > Keily's Profile </Button>
-
+          Test this text
        </div>
       </Grid>   
     </Grid> 

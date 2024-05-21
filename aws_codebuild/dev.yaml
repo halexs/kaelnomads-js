@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    ENV_VAR: "hwllo"
+
+phases:
+  install:
+    commands: 
+      - ls
+      - echo "verify nodejs is installed"
+      # - yum install -y nodejs # node is pre-installed
+      - npm --version
+      - node --version
+  
+  pre_build:
+    commands:
+      - ls
+      - echo "in pre_build"
+
+  build:
+    commands:
+      - echo "build the src files"
+      - npm install react-scripts
+      - npm run build
+
+  post_build:
+    commands:
+      - echo "deploy to dev s3 bucket"
+      - ls build
+      - aws s3 sync build/ s3://$S3_BUCKET_NAME

@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Pushing code to S3 web bucket"
+  build:
+    commands:
+      - npm install react-scripts
+      - npm run build
+      # - aws s3 sync build/ s3://kaelnomads.com
+      # - npm install
+      # - npm build
+      # - npm deploy
+
