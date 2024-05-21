@@ -17,6 +17,8 @@ phases:
     commands:
       - ls
       - echo "in pre_build"
+      # Invalidate cache for dev deployment, aws gives 1000 free per month
+      - aws cloudfront create-invalidation --distribution-id E1NDQEMUEOTAGO --paths '/*'
 
   build:
     commands:
