@@ -9,29 +9,35 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import FlightIcon from '@mui/icons-material/Flight';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
+// import { FlightIcon, CatchingPokemonIcon, BakeryDiningIcon } from '@mui/icons-material';
+// import CustomZeldaIcon from './CustomZeldaIcon';
 
-// const styles = {
-//   container: {
-//     margin: "8px 8px 8px 8px",
+// const useStyles = makeStyles({
+//   button: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     textAlign: 'center',
+//     height: '48px', // Ensure a consistent height
 //   },
-// };
+//   icon: {
+//     marginRight: '8px', // Adjust spacing between icon and text
+//   }
+// });
 
 function HomePage(props) {
   console.log("url: ", props.url);
+  // const classes = useStyles();
+
   let mainPage: any = "";
   let pageMargins = {"margin": "8px 8px 8px 8px"};
 
-  // this is preferred due to perfformance
-  // const navigate = useNavigate();
-    // let n = useNavigate();
   const nav = useNavigate();
 
-  // the following block works
-  // UPDATE: fixed navigation
   const navigate = (url) => {
-    // window.location.href = url;
-    // alert("changing tabs now");
-    // props.changeTab(2);
     let newTab = 0;
 
     if (url === "/travel") {
@@ -46,11 +52,6 @@ function HomePage(props) {
     props.changeTab(newTab);
     nav(url);
   }
-
-  // const handleClick = () => {
-  //   props.changeTab
-  //   navigate("/path/to/push");
-  // }
 
   if (props.url === "/") {
     // props.changeVisibility(false);
@@ -67,18 +68,19 @@ function HomePage(props) {
 
       <Grid item xs={3}>
        <div id="main-page">
-          <Button onClick={() => navigate('/travel')} > Our Travels </Button>
-          <Button onClick={() => navigate('/alex')} > Alex's Profile </Button>
-          <Button onClick={() => navigate('/keily')} > Keily's Profile </Button>
-          Test this text
+          <Button onClick={() => navigate('/travel')} 
+                  startIcon={<FlightIcon />}> Our Travels </Button>
+          <Button onClick={() => navigate('/alex')} 
+                  startIcon={<CatchingPokemonIcon />}> Alex's Profile </Button>
+          <Button onClick={() => navigate('/keily')} 
+                  startIcon={<BakeryDiningIcon />}> Keily's Profile </Button>
        </div>
-      </Grid>   
-    </Grid> 
+      </Grid>
+    </Grid>
 
-    // mainPage = <Redirect to="/travel" />
   }
+
   else if (props.url === "/travel") {
-    // props.changeVisibility(true);
     mainPage = <TravelMap isMobile={props.isMobile} />;
   }
   else if (props.url === "/alex") {
@@ -94,8 +96,5 @@ function HomePage(props) {
     </div>
   );
 }
-      // <div id="main-container">
-      //   {mainPage}
-      // </div>
 
 export default HomePage;
