@@ -31,3 +31,4 @@ phases:
       - echo "deploy to dev s3 bucket"
       - ls build
       - aws s3 sync build/ s3://$S3_BUCKET_NAME
+      - aws s3 cp error.html s3://$S3_BUCKET_NAME/error.html
