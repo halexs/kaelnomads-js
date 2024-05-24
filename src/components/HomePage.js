@@ -32,7 +32,7 @@ function HomePage(props) {
   console.log("url: ", props.url);
   // const classes = useStyles();
 
-  let mainPage: any = "";
+  let mainPage = "";
   let pageMargins = {"margin": "8px 8px 8px 8px"};
 
   const nav = useNavigate();
