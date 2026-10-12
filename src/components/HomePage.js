@@ -4,9 +4,7 @@ import Alex from './Alex';
 import Keily from './Keily';
 import "./HomePage.css"
 
-import Grid from '@mui/material/Grid';
 // import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import FlightIcon from '@mui/icons-material/Flight';
@@ -56,28 +54,29 @@ function HomePage(props) {
   if (props.url === "/") {
     // props.changeVisibility(false);
     pageMargins["margin"] = "";
-    mainPage = <div id="main-page"> main page </div>;
-    mainPage = <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: '85vh' }}
-    >
-
-      <Grid item xs={3}>
-       <div id="main-page">
-          <Button onClick={() => navigate('/travel')} 
-                  startIcon={<FlightIcon />}> Our Travels </Button>
-          <Button onClick={() => navigate('/alex')} 
-                  startIcon={<CatchingPokemonIcon />}> Alex's Profile </Button>
-          <Button onClick={() => navigate('/keily')} 
-                  startIcon={<BakeryDiningIcon />}> Keily's Profile </Button>
-       </div>
-      </Grid>
-    </Grid>
-
+    mainPage = (
+      <div className="hero">
+        <h1 className="hero-title">Alex &amp; Keily's Adventure</h1>
+        <p className="hero-subtitle">Follow our trip across the country, one stop at a time.</p>
+        <div className="hero-cards">
+          <button className="hero-card" onClick={() => navigate('/travel')}>
+            <span className="icon"><FlightIcon /></span>
+            <span className="label">Our Travels</span>
+            <span className="caption">Explore the map</span>
+          </button>
+          <button className="hero-card" onClick={() => navigate('/alex')}>
+            <span className="icon"><CatchingPokemonIcon /></span>
+            <span className="label">Alex's Profile</span>
+            <span className="caption">Code, cloud &amp; coffee</span>
+          </button>
+          <button className="hero-card" onClick={() => navigate('/keily')}>
+            <span className="icon"><BakeryDiningIcon /></span>
+            <span className="label">Keily's Profile</span>
+            <span className="caption">Snacks &amp; studies</span>
+          </button>
+        </div>
+      </div>
+    );
   }
 
   else if (props.url === "/travel") {

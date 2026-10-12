@@ -11,14 +11,8 @@ class TravelMapLegend extends React.Component {
       onAdd: (map) => {
         const panelDiv = L.DomUtil.create("div", "info");
         // Default align is center, this allows left align
-        panelDiv.align = "left";
-        panelDiv.style.border = "solid black";
-        panelDiv.style.padding = "4px 4px 4px 4px";
-        panelDiv.style.backgroundColor = "#e9ebe6";
         let legendTitle = document.createElement("h3");
         legendTitle.innerHTML = "Places we've been"
-        legendTitle.style.margin = "0";
-        legendTitle.style.color = "black";
         panelDiv.appendChild(legendTitle);
 
         for (let i = 0; i < Object.keys(locations).length; i++) {

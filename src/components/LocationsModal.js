@@ -15,11 +15,12 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: { xs: '90vw', sm: 420 },
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  borderRadius: 4,
   boxShadow: 24,
   p: 4,
+  outline: 'none',
 };
 
 function LocationsModal(props) {
@@ -64,7 +65,7 @@ function LocationsModal(props) {
 
         <Box sx={style}>
           {/*<Button onClick={() => {console.log(props.open)}}> check open var </Button>*/}
-          <Typography id="transition-modal-title" variant="h6" component="h2">
+          <Typography id="transition-modal-title" variant="h5" component="h2">
             { title }
           </Typography>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
