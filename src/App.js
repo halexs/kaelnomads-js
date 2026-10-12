@@ -19,7 +19,7 @@ const theme = createTheme({
 });
 
 function App() {
-  let currentSelected: number = 0;
+  let currentSelected = 0;
 
   if (window.location.pathname === "/") {
     currentSelected = 0;

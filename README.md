@@ -1,72 +1,98 @@
-Migrate from typescript over to jsx. Typescript was causing too many issues with libraries.
+# kaelnomads-js
 
-# Getting Started with Create React App
+Frontend for [kaelnomads.com](https://kaelnomads.com), Alex and Keily's travel and personal website.
+Built with React 17 (Create React App), Material UI 5 and React-Leaflet.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Infrastructure (S3, CloudFront, Route53, CodePipeline, API) lives in the sibling repo
+[`website_iac`](https://github.com/halexs/website_iac).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+| Route     | Component                       | Description                                                        |
+|-----------|---------------------------------|--------------------------------------------------------------------|
+| `/`       | `HomePage`                      | Landing page with buttons to the other sections                    |
+| `/travel` | `TravelMap`                     | Leaflet map of places visited, colour-graded route, legend, modal  |
+| `/alex`   | `Alex`                          | Alex's profile                                                     |
+| `/keily`  | `Keily`                         | Keily's profile (placeholder)                                      |
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Prerequisites: Node.js (a current LTS release) and npm.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+npm install
+npm start        # dev server on http://localhost:3000
+npm test         # jest, interactive watch mode
+npm run build    # production bundle in build/
+```
 
-### `npm test`
+## Project layout
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+  App.js                 Router, top AppBar/tabs, mobile detection (width <= 768px)
+  components/
+    HomePage.js          Renders the page for the current route
+    TravelMap.js         Fetches locations, draws markers + polylines
+    TravelMapLegend.js   Leaflet control listing locations, zoom + modal trigger
+    LocationsModal.js    Detail modal for a selected location (pictures TBD)
+    Alex.js / Keily.js   Profile pages
+aws_codebuild/           Buildspecs used by the CodePipeline (dev.yaml, prod.yaml)
+locations.json           Source of truth for travel locations (uploaded to S3)
+error.html               Redirects unknown paths back to / (client-side routing on S3)
+```
 
-### `npm run build`
+## Data flow: travel locations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. `locations.json` in this repo is edited by hand (see schema below).
+2. `npm run update_locations` backs up and uploads it to `s3://kaelnomads-resources/locations.json`.
+3. A Lambda behind API Gateway (`GET /beta/location`) reads that object and returns it.
+4. `TravelMap` fetches it once per browser session and caches it in `sessionStorage`
+   (key `locations`). Clear session storage to see fresh data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`locations.json` schema (keys are sequential string indices, ordered by trip):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```json
+{
+  "0": {
+    "city": "Fairfax County",
+    "state": "VA",
+    "time": "12",
+    "timeUnit": "M",
+    "coordinates": [38.85, -77.342],
+    "description": ""
+  }
+}
+```
 
-### `npm run eject`
+`timeUnit` is `"D"` (days) or `"M"` (months). `time` is a string.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pushes to `main` trigger the `kaelnomads-frontend` CodePipeline:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Source** - GitHub (CodeStar connection)
+2. **DeployDevWebsite** - `aws_codebuild/dev.yaml`: build, sync to the dev bucket, invalidate dev CloudFront
+   (https://dev.kaelnomads.com)
+3. **ManualProdApproval** - a human approves in the AWS console
+4. **DeployProdWebsite** - `aws_codebuild/prod.yaml`: build and sync to the prod bucket
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Bucket names and the CloudFront id are injected as CodeBuild environment variables
+(`S3_BUCKET_NAME`, `CLOUDFRONT_DEV_ID`) by Terraform. `npm run deploy` is a legacy manual deploy
+to `s3://kaelnomads.com` and should not normally be used.
 
-## Learn More
+## CI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`.github/workflows/ci.yml` runs `npm ci`, the tests and `npm run build` on every PR and push to `main`.
+Deployment stays with AWS CodePipeline (above); GitHub Actions does not deploy, to avoid two competing deploy paths.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Known issues / tech debt
 
-### Code Splitting
+See [`docs/ISSUE_PLANS.md`](docs/ISSUE_PLANS.md) for per-issue implementation plans, and the
+"Cross-cutting findings" section there for tech debt (hardcoded API URL/key in `TravelMap.js`,
+unused `old_buildspec.yaml`, no tests beyond the CRA stub, etc.).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## History
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Migrated from TypeScript back to plain JavaScript/JSX because TypeScript caused too many
+library typing issues.
