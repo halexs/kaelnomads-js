@@ -20,9 +20,9 @@ function Keily(props) {
 
 
   return (
-    <div style={{width: "60%", color: textColor}}>
+    <div className="page-card" style={{color: textColor}}>
 
-      <Typography id="transition-modal-title" variant="h6" component="h2">
+      <Typography id="transition-modal-title" variant="h4" component="h1">
         About Me
       </Typography>
       <Typography id="transition-modal-description" sx={{ mt: 2 }}>
