@@ -81,6 +81,11 @@ Bucket names and the CloudFront id are injected as CodeBuild environment variabl
 (`S3_BUCKET_NAME`, `CLOUDFRONT_DEV_ID`) by Terraform. `npm run deploy` is a legacy manual deploy
 to `s3://kaelnomads.com` and should not normally be used.
 
+## CI
+
+`.github/workflows/ci.yml` runs `npm ci`, the tests and `npm run build` on every PR and push to `main`.
+Deployment stays with AWS CodePipeline (above); GitHub Actions does not deploy, to avoid two competing deploy paths.
+
 ## Known issues / tech debt
 
 See [`docs/ISSUE_PLANS.md`](docs/ISSUE_PLANS.md) for per-issue implementation plans, and the
