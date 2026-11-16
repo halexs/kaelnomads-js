@@ -1,3 +1,50 @@
 a:hover {
-	cursor: pointer;
+  cursor: pointer;
+}
+
+.leaflet-control.info {
+  max-width: 260px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(22, 98, 122, 0.25);
+  text-align: left;
+  line-height: 1.7;
+  font-size: 0.9rem;
+  color: #1f2d3a;
+}
+
+.leaflet-control.info h3 {
+  margin: 0 0 6px;
+  font-family: 'Fraunces', Georgia, serif;
+  color: #16627a;
+}
+
+.leaflet-control.info a {
+  color: #1f2d3a;
+  text-decoration: none;
+  border-bottom: 1px dotted #2193b0;
+}
+
+.leaflet-control.info a:hover {
+  color: #2193b0;
+}
+
+.leaflet-control.info button {
+  margin-top: 8px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #2193b0;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.leaflet-control.info button:hover {
+  background: #16627a;
 }

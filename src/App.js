@@ -11,11 +11,23 @@ import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: "#0000FF"
-  //   }
-  // }
+  palette: {
+    primary: { main: '#2193b0', dark: '#16627a', contrastText: '#ffffff' },
+    secondary: { main: '#f69d3c' },
+    text: { primary: '#1f2d3a', secondary: '#4a5b6a' },
+  },
+  shape: { borderRadius: 14 },
+  typography: {
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    h3: { fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700 },
+    h4: { fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700 },
+    h5: { fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600 },
+    h6: { fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600 },
+    button: { textTransform: 'none', fontWeight: 600 },
+  },
+  components: {
+    MuiButton: { defaultProps: { disableElevation: true } },
+  },
 });
 
 function App() {
@@ -55,10 +67,9 @@ function App() {
     <ThemeProvider theme={theme}>
     <BrowserRouter>
       <div className="App">
-        <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="static" elevation={0}>
+        <AppBar color="transparent" style={{"visibility": selectedTab === 0 ? "hidden" : "visible"}} id="app-bar-style" position="sticky" elevation={0}>
           <Toolbar>
-          <div style={{color: "white"}}> Welcome to Alex and Keily's Adventure!
-          </div>
+          <div className="brand">Alex &amp; Keily</div>
           <div className="right-align"></div>
           <Tabs
             value={selectedTab}
@@ -66,14 +77,14 @@ function App() {
             indicatorColor="primary"
             variant="scrollable"
             allowScrollButtonsMobile
-            textColor="primary"
+            textColor="inherit"
             aria-label="basic tabs example" 
             // centered
           >
-            <Tab style={{color: "white"}} label="Home" component={Link} to="/" />
-            <Tab style={{color: "white"}} label="Adventures" component={Link} to="/travel" />
-            <Tab style={{color: "white"}} label="Alex" component={Link} to="/alex" />
-            <Tab style={{color: "white"}} label="Keily" component={Link} to="/keily" />
+            <Tab label="Home" component={Link} to="/" />
+            <Tab label="Adventures" component={Link} to="/travel" />
+            <Tab label="Alex" component={Link} to="/alex" />
+            <Tab label="Keily" component={Link} to="/keily" />
           </Tabs>
           </Toolbar>
         </AppBar>

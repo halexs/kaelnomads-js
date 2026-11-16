@@ -1,54 +1,74 @@
-.Tab {
-  color: white;
+:root {
+  --teal: #2193b0;
+  --teal-dark: #16627a;
+  --sand: #fdf6ec;
+  --sunset: #f69d3c;
+  --ink: #1f2d3a;
+  --card-shadow: 0 10px 30px rgba(22, 98, 122, 0.18);
 }
 
-#app-bar-style {
+.App {
+  text-align: center;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.35), transparent 40%),
+    linear-gradient(170deg, #2b8fae 0%, #8fd0d6 38%, var(--sand) 70%, #f8c98a 100%);
+  background-attachment: fixed;
 }
 
 .right-align {
   margin-left: auto;
 }
 
-.App {
-  text-align: center;
-  /*background-color: aliceblue;*/
-  /*background: linear-gradient(180deg, #0346cc 0%, rgb(0, 153, 255) 100%);*/
-  background:  linear-gradient(180deg, #3f87a6, #ebf8e1, #f69d3c);
-  /*color: whitesmoke;*/
-  height: 100vh;
+/* Top navigation: frosted glass */
+#app-bar-style {
+  background: rgba(22, 98, 122, 0.55) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#app-bar-style .brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+#app-bar-style .MuiTab-root {
+  color: rgba(255, 255, 255, 0.92);
+  min-height: 48px;
+}
+
+#app-bar-style .MuiTab-root.Mui-selected {
+  color: #fff;
+}
+
+#app-bar-style .MuiTabs-indicator {
+  background-color: var(--sunset);
+  height: 3px;
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  #app-bar-style .brand {
+    display: none;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a:focus-visible,
+button:focus-visible,
+.MuiTab-root:focus-visible {
+  outline: 3px solid var(--sunset);
+  outline-offset: 2px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
